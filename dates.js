@@ -1,8 +1,8 @@
 // dates.js — Lógica de datas para o site de formatura
 // Curso: Ciências Contábeis | Elaborado por Vítor do Mar
 
-const INICIO = new Date(2025, 1, 9);   // 09 fev 2025
-const FIM    = new Date(2025, 11, 12); // 12 dez 2025
+const INICIO = new Date(2026, 1, 9);   // 09 fev 2026
+const FIM    = new Date(2026, 11, 12); // 12 dez 2026
 
 function calcular() {
   const hoje  = new Date();
