@@ -32,7 +32,6 @@
       position: relative;
     }
 
-    /* Background texture */
     body::before {
       content: '';
       position: fixed;
@@ -43,7 +42,6 @@
       pointer-events: none;
     }
 
-    /* Grain overlay */
     body::after {
       content: '';
       position: fixed;
@@ -60,7 +58,6 @@
       z-index: 1;
     }
 
-    /* Header */
     .label {
       font-size: 0.65rem;
       letter-spacing: 0.3em;
@@ -82,9 +79,7 @@
       animation: fadeUp 0.8s ease forwards 0.2s;
     }
 
-    h1 span {
-      color: var(--accent);
-    }
+    h1 span { color: var(--accent); }
 
     .subtitle {
       font-size: 0.7rem;
@@ -95,7 +90,6 @@
       animation: fadeUp 0.8s ease forwards 0.3s;
     }
 
-    /* Divider */
     .divider {
       width: 100%;
       height: 1px;
@@ -105,7 +99,6 @@
       animation: fadeUp 0.8s ease forwards 0.35s;
     }
 
-    /* Big number */
     .countdown-hero {
       display: flex;
       align-items: baseline;
@@ -145,7 +138,6 @@
       animation: fadeUp 0.8s ease forwards 0.5s;
     }
 
-    /* Progress section */
     .progress-section {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -191,7 +183,6 @@
       width: 100%;
       height: 6px;
       background: var(--progress-bg);
-      border-radius: 0;
       overflow: hidden;
       margin-bottom: 0.8rem;
       position: relative;
@@ -200,7 +191,6 @@
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
-      border-radius: 0;
       width: 0%;
       transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
@@ -222,7 +212,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* Stats grid */
     .stats {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -258,7 +247,6 @@
 
     .stat-value.accent { color: var(--accent); }
 
-    /* Footer */
     .footer {
       font-size: 0.58rem;
       color: var(--muted);
@@ -268,12 +256,8 @@
       animation: fadeUp 0.8s ease forwards 0.85s;
     }
 
-    .footer span {
-      color: var(--accent);
-      opacity: 0.7;
-    }
+    .footer span { color: var(--accent); opacity: 0.7; }
 
-    /* Decorative corner */
     .corner {
       position: fixed;
       width: 120px;
@@ -345,47 +329,6 @@
     <p class="footer">Elaborado por <span>Vítor do Mar</span> &nbsp;·&nbsp; <span id="hoje">—</span></p>
   </div>
 
-  <script>
-    function calcular() {
-      const inicio   = new Date(2025, 1, 9);   // 09 fev 2025
-      const fim      = new Date(2025, 11, 12);  // 12 dez 2025
-      const hoje     = new Date();
-
-      // Zera horas para comparação precisa
-      const hojeZ = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-
-      const totalMs   = fim - inicio;
-      const cursadoMs = Math.max(0, hojeZ - inicio);
-      const restaMs   = Math.max(0, fim - hojeZ);
-
-      const totalDias    = Math.round(totalMs   / 86400000);
-      const cursadoDias  = Math.min(Math.round(cursadoMs / 86400000), totalDias);
-      const restaDias    = Math.round(restaMs   / 86400000);
-      const semanasResta = Math.ceil(restaDias  / 7);
-
-      const pct = Math.min(100, Math.round((cursadoDias / totalDias) * 1000) / 10);
-
-      // Formata data da formatura
-      const opts = { day: '2-digit', month: 'long', year: 'numeric' };
-      document.getElementById('dataFormatura').textContent =
-        'Formatura: ' + fim.toLocaleDateString('pt-BR', opts);
-
-      document.getElementById('diasRestantes').textContent = restaDias;
-      document.getElementById('pctTexto').textContent      = pct.toFixed(1) + '%';
-      document.getElementById('diasCursados').textContent  = cursadoDias;
-      document.getElementById('diasTotal').textContent     = totalDias;
-      document.getElementById('semanasRestantes').textContent = semanasResta;
-
-      document.getElementById('hoje').textContent =
-        hojeZ.toLocaleDateString('pt-BR', opts);
-
-      // Anima barra após render
-      setTimeout(() => {
-        document.getElementById('progressBar').style.width = pct + '%';
-      }, 900);
-    }
-
-    calcular();
-  </script>
+  <script src="dates.js"></script>
 </body>
 </html>
